@@ -1,3 +1,26 @@
 // Place all the styles related to the offerings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.offerings {
+    abbr {
+        cursor: pointer;
+    }
+    table {
+        border-spacing: 1px 1px;
+        border: thin solid white;
+
+        input[type=text] {
+            padding: .25em;
+        }
+    }
+    td, th {
+        padding: .5em;
+    }
+    td input[type=text] {
+        text-align: right;
+    }
+    th {
+        background-color: #f7f7f7;
+    }
+}
