@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Offering:</b>
+  <%= @content.offering_id %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @content.position %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @content.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', content_index_path %>

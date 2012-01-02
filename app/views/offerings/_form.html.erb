@@ -1,0 +1,42 @@
+<%= form_for(@offering) do |f| %>
+  <% if @offering.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@offering.errors.count, "error") %> prohibited this offering from being saved:</h2>
+
+      <ul>
+      <% @offering.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <table>
+    <tr>
+      <th></th>
+      <% @outcomes.each do |outcome| %>
+        <th><abbr title="<%= outcome.title %>"><%= outcome.key %></abbr></th>
+      <% end %>
+    </tr>
+    <%= f.fields_for :content do |cf| %>
+      <tr>
+        <th><%= cf.text_field :title %></th>
+        <%= cf.fields_for :mappings do |mf| %>
+          <td>
+            <%= mf.text_field :value %>
+            <%= mf.hidden_field :outcome_id %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
