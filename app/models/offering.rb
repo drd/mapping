@@ -12,7 +12,11 @@ class Offering < ActiveRecord::Base
   has_many :mappings, :through => :content
   has_many :outcomes, :through => :mappings
   
-  accepts_nested_attributes_for :content, reject_if: ->(c) { c['title'].blank? }
+  accepts_nested_attributes_for :content, reject_if: ->(c) do
+    c['title'].blank? and (c['mappings_attributes'].none? do |i,m|
+      m['value']
+    end)
+  end
 
   validates :title, :presence => true
   validates_associated :content
