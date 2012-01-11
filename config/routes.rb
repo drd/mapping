@@ -1,4 +1,6 @@
 Map::Application.routes.draw do
+  resources :terms
+
   resources :offerings do
     resources :content do
       resources :mappings do
