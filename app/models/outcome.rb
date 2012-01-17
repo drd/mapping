@@ -4,7 +4,7 @@ class Outcome < ActiveRecord::Base
 
   validates :title, :key, :presence => true
   validates :key, :format => {
-    :with => /A-Z/,
+    :with => /[A-Z]/,
     :message => 'only singular capital letters allowed'
   }
 end
