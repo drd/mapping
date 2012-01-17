@@ -11,32 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+  <%= f.hidden_field :term_id %>
+  <%= f.text_field :title %>
+
+  <h3>Course Content</h3>
+  <ul class="tabs" data-tabs="tabs">
+    <% @offering.content_groups.each_with_index do |cg, i| %>
+      <li class="<%= 'active' if i == 0 %>"><a href="#<%= dom_id(cg) %>"><%= cg.name %></a></li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content">
+  <%= f.fields_for :content_groups do |cgf, i| %>
+    <div id="<%= dom_id(cgf.object) %>" 
+         class="tab-pane 
+                <%= 'active' if @offering.content_groups.to_a.find_index(cgf.object) == 0 %>"
+                > 
+      <%= cgf.text_field :name %>
+
+      <table>
+        <tr>
+          <th></th>
+          <% @outcomes.each do |outcome| %>
+            <th><abbr title="<%= outcome.title %>"><%= outcome.key %></abbr></th>
+          <% end %>
+        </tr>
+        <%= cgf.fields_for :content do |cf| %>
+          <tr>
+            <th><%= cf.text_field :title %></th>
+            <%= cf.fields_for :mappings do |mf| %>
+              <td>
+                <%= mf.text_field :value, :class => 'number_field' %>
+                <%= mf.hidden_field :outcome_id %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
   </div>
 
-  <table>
-    <tr>
-      <th></th>
-      <% @outcomes.each do |outcome| %>
-        <th><abbr title="<%= outcome.title %>"><%= outcome.key %></abbr></th>
-      <% end %>
-    </tr>
-    <%= f.fields_for :content do |cf| %>
-      <tr>
-        <th><%= cf.text_field :title %></th>
-        <%= cf.fields_for :mappings do |mf| %>
-          <td>
-            <%= mf.text_field :value %>
-            <%= mf.hidden_field :outcome_id %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
-
   <div class="actions">
-    <%= f.submit %>
+    <button class="btn primary" type="submit">Save</button> or
+      <%= link_to 'Cancel', offerings_path %>
   </div>
 <% end %>

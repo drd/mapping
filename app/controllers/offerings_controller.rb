@@ -26,7 +26,8 @@ class OfferingsController < ApplicationController
   # GET /offerings/new
   # GET /offerings/new.json
   def new
-    @offering = Offering.new
+    @offering = @term.offerings.build
+    @offering.prepare_for_form
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,22 +38,20 @@ class OfferingsController < ApplicationController
   # GET /offerings/1/edit
   def edit
     @offering = Offering.find(params[:id])
-    @offering.content.build_with_mappings
+    @offering.prepare_for_form
   end
 
   # POST /offerings
   # POST /offerings.json
   def create
-    @offering = Offering.new
-    @offering.content.build_with_mappings
-    @offering.update_attributes(params[:offering])
+    @offering = Offering.new(params[:offering])
 
     respond_to do |format|
       if @offering.save
         format.html { redirect_to @offering, notice: 'Offering was successfully created.' }
         format.json { render json: @offering, status: :created, location: @offering }
       else
-        format.html { edit; render action: "new" }
+        format.html { render action: "new" }
         format.json { render json: @offering.errors, status: :unprocessable_entity }
       end
     end
@@ -62,6 +61,7 @@ class OfferingsController < ApplicationController
   # PUT /offerings/1.json
   def update
     @offering = Offering.find(params[:id])
+    @offering.update_attributes(params[:offering])
 
     respond_to do |format|
       if @offering.update_attributes(params[:offering])
@@ -89,7 +89,8 @@ class OfferingsController < ApplicationController
 private
 
   def find_outcomes
-    @outcomes = Outcome.all
+    @term = Term.current_term
+    @outcomes = @term.outcomes
   end
 
 end

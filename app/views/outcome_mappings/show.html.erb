@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Outcome group:</b>
+  <%= @outcome_mapping.outcome_group_id %>
+</p>
+
+<p>
+  <b>Outcome:</b>
+  <%= @outcome_mapping.outcome_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_outcome_mapping_path(@outcome_mapping) %> |
+<%= link_to 'Back', outcome_mappings_path %>

@@ -1,0 +1,25 @@
+<h1>Listing outcome_mappings</h1>
+
+<table>
+  <tr>
+    <th>Outcome group</th>
+    <th>Outcome</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @outcome_mappings.each do |outcome_mapping| %>
+  <tr>
+    <td><%= outcome_mapping.outcome_group_id %></td>
+    <td><%= outcome_mapping.outcome_id %></td>
+    <td><%= link_to 'Show', outcome_mapping %></td>
+    <td><%= link_to 'Edit', edit_outcome_mapping_path(outcome_mapping) %></td>
+    <td><%= link_to 'Destroy', outcome_mapping, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Outcome mapping', new_outcome_mapping_path %>

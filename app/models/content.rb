@@ -1,9 +1,11 @@
 class Content < ActiveRecord::Base
-  belongs_to :offering
+  belongs_to :content_group
+  has_one :offering, :through => :content_group
+
   has_many :mappings, :as => :mappable
   has_many :outcomes, :through => :mappings
 
-  acts_as_list :scope => :offering_id
+  acts_as_list :scope => :content_group_id
   
   accepts_nested_attributes_for :mappings
   

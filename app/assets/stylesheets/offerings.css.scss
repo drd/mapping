@@ -8,7 +8,6 @@ body.offerings {
     }
     table {
         border-spacing: 1px 1px;
-        border: thin solid white;
 
         input[type=text] {
             padding: .25em;
@@ -20,8 +19,5 @@ body.offerings {
     td input[type=text] {
         text-align: right;
         width: 1.5em;
-    }
-    th {
-        background-color: #f7f7f7;
     }
 }

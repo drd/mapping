@@ -1,4 +1,12 @@
 Map::Application.routes.draw do
+  resources :content_groups
+
+  resources :outcome_mappings
+
+  resources :outcome_groups do
+    resources :outcomes
+  end
+
   resources :terms
 
   resources :offerings do
@@ -8,8 +16,6 @@ Map::Application.routes.draw do
       end
     end
   end
-
-  resources :outcomes
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

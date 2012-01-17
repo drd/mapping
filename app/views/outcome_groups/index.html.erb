@@ -1,0 +1,29 @@
+<table class="zebra-striped">
+ <thead>
+  <tr>
+    <th>ID</th>
+        <th>
+      <%= t("activerecord.attributes.outcome_group.initial_term_id", :default => t("activerecord.labels.initial_term_id", :default => "Initial_term_id")) %>
+    </th>
+        <th>Created at</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @outcome_groups.each do |outcome_group| -%>
+   <tr>
+    <td><%= outcome_group.id %></td>
+        <td><%= link_to outcome_group.initial_term_id, outcome_group_path(outcome_group) %>
+    </td>
+        <td><%= outcome_group.created_at %></td>
+    <td>
+      <%= link_to "Show", outcome_group_path(outcome_group) %>
+      <%= link_to "Edit", edit_outcome_group_path(outcome_group) %>
+      <%= link_to "Destroy", outcome_group_path(outcome_group), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+    </td>
+    </tr>
+    <% end -%>
+   </tbody>
+</table>
+
+<%= link_to "New", new_outcome_group_path, :class => 'btn primary' %>

@@ -1,23 +1,29 @@
-<h1>Listing terms</h1>
-
-<table>
+<table class="zebra-striped">
+ <thead>
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>ID</th>
+        <th>
+      <%= t("activerecord.attributes.term.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+    </th>
+        <th>Created at</th>
+    <th>Actions</th>
   </tr>
-
-<% @terms.each do |term| %>
-  <tr>
-    <td><%= term.name %></td>
-    <td><%= link_to 'Show', term %></td>
-    <td><%= link_to 'Edit', edit_term_path(term) %></td>
-    <td><%= link_to 'Destroy', term, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  </thead>
+  <tbody>
+  <% @terms.each do |term| -%>
+   <tr>
+    <td><%= term.id %></td>
+        <td><%= link_to term.name, term_path(term) %>
+    </td>
+        <td><%= term.created_at %></td>
+    <td>
+      <%= link_to "Show", term_path(term) %>
+      <%= link_to "Edit", edit_term_path(term) %>
+      <%= link_to "Destroy", term_path(term), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+    </td>
+    </tr>
+    <% end -%>
+   </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Term', new_term_path %>
+<%= link_to "New", new_term_path, :class => 'btn primary' %>

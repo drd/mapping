@@ -1,0 +1,7 @@
+
+  <label class="label"><%= t("activerecord.attributes.outcome_group.initial_term_id", :default => t("activerecord.labels.initial_term_id", :default => "Initial term")) %>:</label>
+  <p><%= @outcome_group.initial_term_id %></p>
+
+  <label class="label"><%= t("activerecord.attributes.outcome_group.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</label>
+  <p><%= @outcome_group.title %></p>
+<%= link_to "Back", outcome_groups_path  %>

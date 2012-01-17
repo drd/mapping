@@ -1,6 +1,3 @@
-<h1>Editing term</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @term %> |
-<%= link_to 'Back', terms_path %>
+<%= bootstrap_form_for :term, :url => terms_path, :html => { :class => :form } do |f| -%>
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>

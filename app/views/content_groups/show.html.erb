@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Offering:</b>
+  <%= @content_group.offering_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @content_group.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_group_path(@content_group) %> |
+<%= link_to 'Back', content_groups_path %>

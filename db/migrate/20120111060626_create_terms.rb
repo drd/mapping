@@ -5,5 +5,7 @@ class CreateTerms < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_column :offerings, :term_id, :integer
   end
 end
