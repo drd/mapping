@@ -15,10 +15,11 @@ class ContentGroup < ActiveRecord::Base
   validates :name, presence: true
   validates_associated :content
 
+  # don't accept completely empty content rows
   REJECT = ->(c) do
-    c['title'].blank? and (c['mappings_attributes'].none? do |i,m|
-                                   m['value']
-                                 end)
+    c['title'].blank? and (c['mappings_attributes'].all? do |i,m|
+                             m['value'].blank?
+                           end)
   end
   accepts_nested_attributes_for :content, reject_if: REJECT
 

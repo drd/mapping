@@ -61,7 +61,6 @@ class OfferingsController < ApplicationController
   # PUT /offerings/1.json
   def update
     @offering = Offering.find(params[:id])
-    @offering.update_attributes(params[:offering])
 
     respond_to do |format|
       if @offering.update_attributes(params[:offering])
