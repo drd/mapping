@@ -14,7 +14,7 @@ class Offering < ActiveRecord::Base
   
   # don't accept unnamed content groups with no content attributes
   accepts_nested_attributes_for :content_groups, reject_if: ->(cg) do
-    cg['name'].blank? and (cg['content_attributes'].none? do |i,c|
+    cg['name'].blank? and (cg['content_attributes'].all? do |i,c|
                              ContentGroup::REJECT.call(c)
                            end)
   end
